@@ -1,0 +1,128 @@
+/* styles.css */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button {
+    margin: 10px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.secondary {
+    background-color: #6C757D;
+    color: #fff;
+}
+
+.success {
+    background-color: #28A745;
+    color: #fff;
+}
+
+.danger {
+    background-color: #DC3545;
+    color: #fff;
+}
+
+.text-large {
+    font-size: large;
+}
+
+.text-larger {
+    font-size: x-large;
+}
+
+/* Custom styles for larger radio buttons */
+.form-check-input {
+    width: 2em;
+    height: 2em;
+}
+
+/* Optional: Adjust label alignment for better appearance */
+.form-check-label {
+    margin-left: 5.5em;
+    margin-bottom: 3em;
+}
+
+.result-container {
+    margin-top: 20px;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.result-item {
+    background-color: #e9a6a6;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.subject {
+    color: #066abd;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.value {
+    color: #042841;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.timeline-container {
+    position: relative;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    height: 50px;
+    overflow: hidden;
+}
+
+.timeline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.timeline-item {
+    position: absolute;
+    height: 100%;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.timeline-labels {
+    display: flex;
+    justify-content: space-between;
+    color: black !important; 
+    margin-top: 10px;
+}
+
+.timeline-label {
+    text-align: center;
+}

@@ -1,0 +1,6 @@
+CREATE TABLE invoices (
+    invoice_id INT PRIMARY KEY,
+    customer_id INT,
+    invoice_date DATE,
+    total_amount DECIMAL(10, 2)
+);

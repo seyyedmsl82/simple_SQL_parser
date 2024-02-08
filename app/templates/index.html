@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>SQL Parser</title>
+        <meta name="description" content="">
+        
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="static/css/fontAwesome.css">
+        
+        <!-- Other CSS styles -->
+        <link rel="stylesheet" href="static/css/hero-slider.css">
+        <link rel="stylesheet" href="static/css/owl-carousel.css">
+        <link rel="stylesheet" href="static/css/templatemo-style.css">
+        <link rel="stylesheet" href="static/css/lightbox.css">
+        <link rel="stylesheet" href="static/css/styles.css">
+        
+        <!-- Modernizr -->
+        <script src="static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        
+        <!-- Bootstrap JS -->
+        <script src="static/js/bootstrap.min.js"></script>
+    </head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1 href="#" class="navbar-brand scroll-top"><em>SQL</em> Parser</h1>
+                </div>
+                <!--/.navbar-header-->
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" class="scroll-top">Home</a></li>
+                        <li><a href="#about" class="scroll-link" data-id="about">Start your test</a></li>
+                    </ul>
+                </div>
+                <!--/.navbar-collapse-->
+            </nav>
+            <!--/.navbar-->
+        </div>
+        <!--/.container-->
+    </div>
+
+
+    <div class="parallax-content baner-content" id="home">
+        <div class="container">
+            <div class="text-content">
+                <h2>Effortless <em>SQL</em> Parser</h2>
+                <p style="font-size: large;">Experience streamlined SQL parsing! Effortlessly dissect and analyze your queries for optimal performance and efficiency.</p>
+                <div class="primary-white-button">
+                    <a href="#" class="scroll-link" data-id="about">Let's Start</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="page-section">
+        <div class="container">
+            <div class="row">
+                
+                <form id="sqlForm">
+                    <!-- File Upload Section -->
+                    <div class="col-md-12 col-xs-12">
+                        <div class="service-item">
+                            <div class="icon">
+                                <img src="static\img\service_icon_01.png" alt="">
+                            </div>
+                            <h2>SQL Parser</h2>
+                                <label for="sqlQuery">Enter SQL Query:</label><br>
+                                <textarea id="sqlQuery" name="sqlQuery" rows="7" cols="70"></textarea><br>
+                    
+                        <!-- Submit Button -->
+                        <div class="primary-white-button text-center">
+                            <button class="btn btn-lg submit_button" type="submit">Submit</button>
+                        </div>
+                        <div id="parsedSQL"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="location">
+                        <h4>Seyyed Reza Moslemi, Mahsa Jalali, Fatemeh Sobhani</h4>
+                        <ul>
+                            <li>ID: 220700046, 220700017, 220700024</li>
+                            <li>University of Tehran, <br>College of Engineering</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#sqlForm').submit(function (e) {
+                e.preventDefault();
+                var sqlQuery = $('#sqlQuery').val();
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: '/parse_sql',
+                    data: JSON.stringify({ 'sql_query': sqlQuery }),
+                    success: function (data) {
+                        $('#parsedSQL').text('Parsed SQL: ' + data.parsed_sql);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+
+        function test() {
+            document.querySelector('.submit_button').textContent = 'Loading';
+        }
+    $(document).ready(function() {
+
+        // navigation click actions 
+        $('.scroll-link').on('click', function(event){
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop:0}, 'slow');         
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+
+        $('.submit_button').on('click', function () {
+            $('#radioModal').modal('show');
+        });
+    });
+    // scroll function
+    function scrollToID(id, speed){
+        var offSet = 50;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop:targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+    if (typeof console === "undefined") {
+        console = {
+            log: function() { }
+        };
+    }
+    </script>
+</body>
+</html>
